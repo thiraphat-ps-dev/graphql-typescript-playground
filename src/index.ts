@@ -19,7 +19,7 @@ const server = new ApolloServer({
     ApolloServerPluginLandingPageGraphQLPlayground(), // enable playground
   ],
   context: () => ({
-    dataSources: {
+    api: {
       messageAPI: new MessageAPI(),
       userAPI: new UserAPI(),
       productAPI: new ProductAPI(),

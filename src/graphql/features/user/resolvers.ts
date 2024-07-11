@@ -5,9 +5,9 @@ export const userResolvers: IResolvers = {
     user: () => ({}),
   },
   UserQueries: {
-    getUser: async (_, { input }, { dataSources }) => {
+    getUser: async (_, { input }, { api }) => {
       try {
-        const user = await dataSources.userAPI.getUser(input.id);
+        const user = await api.userAPI.getUser(input.id);
         return {
           success: true,
           message: 'User fetched successfully',
@@ -28,9 +28,9 @@ export const userResolvers: IResolvers = {
         };
       }
     },
-    getAllUsers: async (_, { input }, { dataSources }) => {
+    getAllUsers: async (_, { input }, { api }) => {
       try {
-        const users = await dataSources.userAPI.getAllUsers();
+        const users = await api.userAPI.getAllUsers();
         return {
           success: true,
           message: 'Users fetched successfully',
@@ -56,9 +56,9 @@ export const userResolvers: IResolvers = {
     user: () => ({}),
   },
   UserMutations: {
-    createUser: async (_, { input }, { dataSources }) => {
+    createUser: async (_, { input }, { api }) => {
       try {
-        const user = await dataSources.userAPI.createUser(input.name);
+        const user = await api.userAPI.createUser(input.name);
         return {
           success: true,
           message: 'User created successfully',
@@ -79,9 +79,9 @@ export const userResolvers: IResolvers = {
         };
       }
     },
-    deleteUser: async (_, { input }, { dataSources }) => {
+    deleteUser: async (_, { input }, { api }) => {
       try {
-        const success = await dataSources.userAPI.deleteUser(input.id);
+        const success = await api.userAPI.deleteUser(input.id);
         return {
           success,
           message: success ? 'User deleted successfully' : 'Failed to delete user',

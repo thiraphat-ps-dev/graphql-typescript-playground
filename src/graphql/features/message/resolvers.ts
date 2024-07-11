@@ -5,9 +5,9 @@ export const messageResolvers: IResolvers = {
     message: () => ({}),
   },
   MessageQueries: {
-    getMessage: async (_, { input }, { dataSources }) => {
+    getMessage: async (_, { input }, { api }) => {
       try {
-        const message = await dataSources.messageAPI.getMessage(input.id);
+        const message = await api.messageAPI.getMessage(input.id);
         return {
           success: true,
           message: 'Message fetched successfully',
@@ -28,9 +28,9 @@ export const messageResolvers: IResolvers = {
         };
       }
     },
-    getAllMessages: async (_, { input }, { dataSources }) => {
+    getAllMessages: async (_, { input }, { api }) => {
       try {
-        const messages = await dataSources.messageAPI.getAllMessages();
+        const messages = await api.messageAPI.getAllMessages();
         return {
           success: true,
           message: 'Messages fetched successfully',
@@ -56,9 +56,9 @@ export const messageResolvers: IResolvers = {
     message: () => ({}),
   },
   MessageMutations: {
-    createMessage: async (_, { input }, { dataSources }) => {
+    createMessage: async (_, { input }, { api }) => {
       try {
-        const message = await dataSources.messageAPI.createMessage(input.content);
+        const message = await api.messageAPI.createMessage(input.content);
         return {
           success: true,
           message: 'Message created successfully',
@@ -79,9 +79,9 @@ export const messageResolvers: IResolvers = {
         };
       }
     },
-    deleteMessage: async (_, { input }, { dataSources }) => {
+    deleteMessage: async (_, { input }, { api }) => {
       try {
-        const success = await dataSources.messageAPI.deleteMessage(input.id);
+        const success = await api.messageAPI.deleteMessage(input.id);
         return {
           success,
           message: success ? 'Message deleted successfully' : 'Failed to delete message',

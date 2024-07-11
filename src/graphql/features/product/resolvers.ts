@@ -5,9 +5,9 @@ export const productResolvers: IResolvers = {
     product: () => ({}),
   },
   ProductQueries: {
-    getProduct: async (_, { input }, { dataSources }) => {
+    getProduct: async (_, { input }, { api }) => {
       try {
-        const product = await dataSources.productAPI.getProduct(input.id);
+        const product = await api.productAPI.getProduct(input.id);
         return {
           success: true,
           message: 'Product fetched successfully',
@@ -28,9 +28,9 @@ export const productResolvers: IResolvers = {
         };
       }
     },
-    getAllProducts: async (_, { input }, { dataSources }) => {
+    getAllProducts: async (_, { input }, { api }) => {
       try {
-        const products = await dataSources.productAPI.getAllProducts();
+        const products = await api.productAPI.getAllProducts();
         return {
           success: true,
           message: 'Products fetched successfully',
@@ -56,9 +56,9 @@ export const productResolvers: IResolvers = {
     product: () => ({}),
   },
   ProductMutations: {
-    createProduct: async (_, { input }, { dataSources }) => {
+    createProduct: async (_, { input }, { api }) => {
       try {
-        const product = await dataSources.productAPI.createProduct(input.title, input.price);
+        const product = await api.productAPI.createProduct(input.title, input.price);
         return {
           success: true,
           message: 'Product created successfully',
@@ -79,9 +79,9 @@ export const productResolvers: IResolvers = {
         };
       }
     },
-    deleteProduct: async (_, { input }, { dataSources }) => {
+    deleteProduct: async (_, { input }, { api }) => {
       try {
-        const success = await dataSources.productAPI.deleteProduct(input.id);
+        const success = await api.productAPI.deleteProduct(input.id);
         return {
           success,
           message: success ? 'Product deleted successfully' : 'Failed to delete product',
