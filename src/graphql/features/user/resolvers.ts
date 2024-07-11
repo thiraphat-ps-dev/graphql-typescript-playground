@@ -5,9 +5,9 @@ export const userResolvers: IResolvers = {
     user: () => ({}),
   },
   UserQueries: {
-    getUser: async (_, { id }, { dataSources }) => {
+    getUser: async (_, { input }, { dataSources }) => {
       try {
-        const user = await dataSources.userAPI.getUser(id);
+        const user = await dataSources.userAPI.getUser(input.id);
         return {
           success: true,
           message: 'User fetched successfully',
@@ -28,7 +28,7 @@ export const userResolvers: IResolvers = {
         };
       }
     },
-    getAllUsers: async (_, __, { dataSources }) => {
+    getAllUsers: async (_, { input }, { dataSources }) => {
       try {
         const users = await dataSources.userAPI.getAllUsers();
         return {
@@ -79,9 +79,9 @@ export const userResolvers: IResolvers = {
         };
       }
     },
-    deleteUser: async (_, { id }, { dataSources }) => {
+    deleteUser: async (_, { input }, { dataSources }) => {
       try {
-        const success = await dataSources.userAPI.deleteUser(id);
+        const success = await dataSources.userAPI.deleteUser(input.id);
         return {
           success,
           message: success ? 'User deleted successfully' : 'Failed to delete user',

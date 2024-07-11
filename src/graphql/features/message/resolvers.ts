@@ -5,9 +5,9 @@ export const messageResolvers: IResolvers = {
     message: () => ({}),
   },
   MessageQueries: {
-    getMessage: async (_, { id }, { dataSources }) => {
+    getMessage: async (_, { input }, { dataSources }) => {
       try {
-        const message = await dataSources.messageAPI.getMessage(id);
+        const message = await dataSources.messageAPI.getMessage(input.id);
         return {
           success: true,
           message: 'Message fetched successfully',
@@ -28,7 +28,7 @@ export const messageResolvers: IResolvers = {
         };
       }
     },
-    getAllMessages: async (_, __, { dataSources }) => {
+    getAllMessages: async (_, { input }, { dataSources }) => {
       try {
         const messages = await dataSources.messageAPI.getAllMessages();
         return {
@@ -79,9 +79,9 @@ export const messageResolvers: IResolvers = {
         };
       }
     },
-    deleteMessage: async (_, { id }, { dataSources }) => {
+    deleteMessage: async (_, { input }, { dataSources }) => {
       try {
-        const success = await dataSources.messageAPI.deleteMessage(id);
+        const success = await dataSources.messageAPI.deleteMessage(input.id);
         return {
           success,
           message: success ? 'Message deleted successfully' : 'Failed to delete message',
