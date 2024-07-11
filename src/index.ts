@@ -3,9 +3,9 @@ import * as dotenv from "dotenv";
 import { typeDefs } from "./graphql/schema";
 import { resolvers } from "./graphql/resolvers";
 import { ApolloServerPluginLandingPageGraphQLPlayground } from "apollo-server-core";
-import MessageAPI from "./graphql/datasources/messageAPI";
-import UserAPI from "./graphql/datasources/userAPI";
-import ProductAPI from "./graphql/datasources/productAPI";
+import MessageAPI from "./graphql/api/message";
+import UserAPI from "./graphql/api/user";
+import ProductAPI from "./graphql/api/product";
 
 dotenv.config();
 
