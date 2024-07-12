@@ -28,9 +28,7 @@ class RecipeAPI {
     };
   }
 
-  async searchRecipes(
-    query: string
-  ): Promise<{
+  async searchRecipes(query: string): Promise<{
     recipes: Recipe[];
     total: number;
     skip: number;
@@ -45,11 +43,6 @@ class RecipeAPI {
       skip: response.data.skip,
       limit: response.data.limit,
     };
-  }
-
-  async getAllRecipesByUserId(userId: number): Promise<Recipe[]> {
-    const response = await axios.get(`${this.baseURL}recipes?userId=${userId}`);
-    return response.data.recipes;
   }
 
   async createRecipe(input: Recipe): Promise<Recipe> {

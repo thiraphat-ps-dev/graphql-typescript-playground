@@ -2,8 +2,8 @@ import { gql } from "apollo-server";
 
 export const userRecipeTypeDefs = gql`
   type UserRecipe {
-    user: User!
-    recipes: [Recipe]!
+    user: User
+    recipe: Recipe
   }
 
   input GetUserRecipeInput {

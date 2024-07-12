@@ -8,15 +8,13 @@ export const userRecipeResolvers: IResolvers = {
     getUserRecipe: async (_, { input }, { api }) => {
       try {
         const user = await api.userAPI.getUser(input.userId);
-        const recipes = await api.recipeAPI.getAllRecipesByUserId(
-          input.userId
-        );
+        const recipe = await api.recipeAPI.getRecipe(user.id);
         return {
           success: true,
           message: "User and recipes fetched successfully",
           userRecipe: {
             user,
-            recipes,
+            recipe,
           },
         };
       } catch (error) {
