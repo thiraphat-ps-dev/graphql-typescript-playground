@@ -7,6 +7,7 @@ import MessageAPI from "./graphql/api/message";
 import UserAPI from "./graphql/api/user";
 import ProductAPI from "./graphql/api/product";
 import CartAPI from "./graphql/api/cart";
+import RecipeAPI from "./graphql/api/recipe";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ const server = new ApolloServer({
       userAPI: new UserAPI(),
       productAPI: new ProductAPI(),
       cartAPI: new CartAPI(),
+      recipeAPI: new RecipeAPI(),
     },
   }),
 });
