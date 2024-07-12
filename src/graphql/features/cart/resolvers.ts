@@ -1,4 +1,4 @@
-import { IResolvers } from '@graphql-tools/utils';
+import { IResolvers } from "@graphql-tools/utils";
 
 export const cartResolvers: IResolvers = {
   Query: {
@@ -8,10 +8,13 @@ export const cartResolvers: IResolvers = {
     getCart: async (_, { input }, { api }) => {
       try {
         const cart = await api.cartAPI.getCart(input.id);
+        console.log(cart.status);
+        console.log(cart.data);
         return {
           success: true,
-          message: 'Cart fetched successfully',
-          cart,
+          status: cart.status,
+          message: "Cart fetched successfully",
+          cart: cart.data,
         };
       } catch (error) {
         if (error instanceof Error) {
@@ -23,7 +26,7 @@ export const cartResolvers: IResolvers = {
         }
         return {
           success: false,
-          message: 'An unknown error occurred',
+          message: "An unknown error occurred",
           cart: null,
         };
       }
@@ -33,7 +36,7 @@ export const cartResolvers: IResolvers = {
         const carts = await api.cartAPI.getAllCarts();
         return {
           success: true,
-          message: 'Carts fetched successfully',
+          message: "Carts fetched successfully",
           carts,
         };
       } catch (error) {
@@ -46,7 +49,7 @@ export const cartResolvers: IResolvers = {
         }
         return {
           success: false,
-          message: 'An unknown error occurred',
+          message: "An unknown error occurred",
           carts: [],
         };
       }
@@ -57,7 +60,7 @@ export const cartResolvers: IResolvers = {
         const cart = await api.cartAPI.getCart(userId);
         return {
           success: true,
-          message: 'User and cart fetched successfully',
+          message: "User and cart fetched successfully",
           userCart: {
             user,
             cart,
@@ -73,7 +76,7 @@ export const cartResolvers: IResolvers = {
         }
         return {
           success: false,
-          message: 'An unknown error occurred',
+          message: "An unknown error occurred",
           userCart: null,
         };
       }
@@ -88,7 +91,7 @@ export const cartResolvers: IResolvers = {
         const cart = await api.cartAPI.createCart(input.userId, input.products);
         return {
           success: true,
-          message: 'Cart created successfully',
+          message: "Cart created successfully",
           cart,
         };
       } catch (error) {
@@ -101,7 +104,7 @@ export const cartResolvers: IResolvers = {
         }
         return {
           success: false,
-          message: 'An unknown error occurred',
+          message: "An unknown error occurred",
           cart: null,
         };
       }
@@ -111,7 +114,9 @@ export const cartResolvers: IResolvers = {
         const success = await api.cartAPI.deleteCart(input.id);
         return {
           success,
-          message: success ? 'Cart deleted successfully' : 'Failed to delete cart',
+          message: success
+            ? "Cart deleted successfully"
+            : "Failed to delete cart",
           cart: null,
         };
       } catch (error) {
@@ -124,7 +129,7 @@ export const cartResolvers: IResolvers = {
         }
         return {
           success: false,
-          message: 'An unknown error occurred',
+          message: "An unknown error occurred",
           cart: null,
         };
       }

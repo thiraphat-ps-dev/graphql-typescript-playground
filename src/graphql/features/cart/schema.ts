@@ -36,6 +36,7 @@ export const cartTypeDefs = gql`
   type GetCartResponse {
     success: Boolean!
     message: String
+    status: String
     cart: Cart
   }
 

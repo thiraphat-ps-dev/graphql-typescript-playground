@@ -1,16 +1,15 @@
-import axios from 'axios';
-import { Cart } from '../types';
+import axios from "axios";
+import { Cart } from "../types";
 
 class CartAPI {
   baseURL: string;
 
   constructor() {
-    this.baseURL = 'https://dummyjson.com/';
+    this.baseURL = "https://dummyjson.com/";
   }
 
   async getCart(id: number): Promise<Cart> {
-    const response = await axios.get(`${this.baseURL}carts/${id}`);
-    return response.data;
+    return await axios.get(`${this.baseURL}carts/${id}`);
   }
 
   async getAllCarts(): Promise<Cart[]> {
@@ -18,8 +17,14 @@ class CartAPI {
     return response.data.carts;
   }
 
-  async createCart(userId: number, products: { id: number; quantity: number }[]): Promise<Cart> {
-    const response = await axios.post(`${this.baseURL}carts/add`, { userId, products });
+  async createCart(
+    userId: number,
+    products: { id: number; quantity: number }[]
+  ): Promise<Cart> {
+    const response = await axios.post(`${this.baseURL}carts/add`, {
+      userId,
+      products,
+    });
     return response.data;
   }
 
